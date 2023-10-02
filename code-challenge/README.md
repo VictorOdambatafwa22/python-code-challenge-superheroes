@@ -28,7 +28,7 @@ This code challenge had 3 main models namely
 
 1. Clone the repository to your local machine:
 
-git clone https://github.com/VictorOdambatafwa22/phase4W1CodeChallenge
+git clone https://github.com/VictorOdambatafwa22/python-code-challenge-superheroes
 
 2. Navigate to the project directory:
 
@@ -62,7 +62,7 @@ cd phase4W1CodeChallenge
 
 
 
-#### Link to the project online repository  https://github.com/VictorOdambatafwa22/phase4W1CodeChallenge
+#### Link to the project online repository  https://github.com/VictorOdambatafwa22 python-code-challenge-superheroes
 
   ## Support and contact details 🙂
 
