@@ -1,258 +1,94 @@
-# Flask Code Challenge - Superheroes
+# superheroes
 
-For this assessment, you'll be working on an API for tracking heroes and their
-superpowers.
+#### Created on 01-10-2023
 
-In this repo, there is a Flask application with some features built out. There
-is also a fully built React frontend application, so you can test if your API is
-working.
+## Description
+Super heroes
+This code challenge had 3 main models namely
+ 
+  1 Hero
+  2 Power
+  3 HeroPower
 
-Your job is to build out the Flask API to add the functionality described in the
-deliverables below.
+- **Steps I went through to achieve the solutions(Algorithm):**
+  - Came up with the 3 models above
+  - Routing
+  
 
-## Setup
+## Getting Started
 
-To download the dependencies for the frontend and backend, run:
+### Prerequisites
+- Web-browser of your choice
+- Github
+- python3
+- vscode (IDE)
 
-```sh
-pipenv install
-npm install --prefix client
-```
 
-There is some starter code in the `app/seed.py` file so that once you've
-generated the models, you'll be able to create data to test your application.
+### Installation
 
-You can run your Flask API on [`localhost:5555`](http://localhost:5555) by running:
+1. Clone the repository to your local machine:
 
-```sh
-python app.py
-```
+git clone https://github.com/VictorOdambatafwa22/phase4W1CodeChallenge
 
-You can run your React app on [`localhost:4000`](http://localhost:4000) by running:
+2. Navigate to the project directory:
 
-```sh
-npm start --prefix client
-```
+cd phase4W1CodeChallenge
 
-You are not being assessed on React, and you don't have to update any of the React
-code; the frontend code is available just so that you can test out the behavior
-of your API in a realistic setting.
 
-There are also tests included which you can run using `pytest -x` to check your work.
+3. Install the required dependencies:
 
-Depending on your preference, you can either check your progress by:
+    pip install --upgrade pipenv
+    pipenv install
+    pipenv shell
 
-- Running `pytest -x` and seeing if your code passes the tests
-- Running the React application in the browser and interacting with the API via
-  the frontend
-- Running the Flask server and using Postman to make requests
+4. Start the vscode cd .:
 
-## Models
 
-You need to create the following relationships:
+### Usage
 
-- A `Hero` has many `Power`s through `HeroPower`
-- A `Power` has many `Hero`s through `HeroPower`
-- A `HeroPower` belongs to a `Hero` and belongs to a `Power`
+   Navigate to the project folder in the terminal then type 
+   Python3 <name of the file.py>
+   press enter on the keyboard
 
-Start by creating the models and migrations for the following database tables:
+## Contributors
+ Victor Odambatafwa
 
-![domain diagram](domain.png)
 
-Add any code needed in the model files to establish the relationships.
+ ### Technologies Used
 
-Then, run the migrations and seed file:
+    The following have been used on this project:
 
-```sh
-flask db upgrade
-python app/seed.py
-```
+  Python3.10.12
 
-> If you aren't able to get the provided seed file working, you are welcome to
-> generate your own seed data to test the application.
 
-## Validations
 
-Add validations to the `HeroPower` model:
+#### Link to the project online repository  https://github.com/VictorOdambatafwa22/phase4W1CodeChallenge
 
-- `strength` must be one of the following values: 'Strong', 'Weak', 'Average'
+  ## Support and contact details 🙂
 
-Add validations to the `Power` model:
+To make a contribution to the code used or any suggestions you can click on the contact link and email us your suggestions.
 
-- `description` must be present and at least 20 characters long
+- Emails: victor.odambatafwa@student.moringaschool.com
+          
+   
+ ## License
 
-## Routes
+Copyright (c) 2023 Victor Odambatafwa
 
-Set up the following routes. Make sure to return JSON data in the format
-specified along with the appropriate HTTP verb.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files , to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-### GET /heroes
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-Return JSON data in the format below:
-
-```json
-[
-  { "id": 1, "name": "Kamala Khan", "super_name": "Ms. Marvel" },
-  { "id": 2, "name": "Doreen Green", "super_name": "Squirrel Girl" },
-  { "id": 3, "name": "Gwen Stacy", "super_name": "Spider-Gwen" }
-]
-```
-
-### GET /heroes/:id
-
-If the `Hero` exists, return JSON data in the format below:
-
-```json
-{
-  "id": 1,
-  "name": "Kamala Khan",
-  "super_name": "Ms. Marvel",
-  "powers": [
-    {
-      "id": 1,
-      "name": "super strength",
-      "description": "gives the wielder super-human strengths"
-    },
-    {
-      "id": 2,
-      "name": "flight",
-      "description": "gives the wielder the ability to fly through the skies at supersonic speed"
-    }
-  ]
-}
-```
-
-If the `Hero` does not exist, return the following JSON data, along with
-the appropriate HTTP status code:
-
-```json
-{
-  "error": "Hero not found"
-}
-```
-
-### GET /powers
-
-Return JSON data in the format below:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "super strength",
-    "description": "gives the wielder super-human strengths"
-  },
-  {
-    "id": 1,
-    "name": "flight",
-    "description": "gives the wielder the ability to fly through the skies at supersonic speed"
-  }
-]
-```
-
-### GET /powers/:id
-
-If the `Power` exists, return JSON data in the format below:
-
-```json
-{
-  "id": 1,
-  "name": "super strength",
-  "description": "gives the wielder super-human strengths"
-}
-```
-
-If the `Power` does not exist, return the following JSON data, along with
-the appropriate HTTP status code:
-
-```json
-{
-  "error": "Power not found"
-}
-```
-
-### PATCH /powers/:id
-
-This route should update an existing `Power`. It should accept an object with
-the following properties in the body of the request:
-
-```json
-{
-  "description": "Updated description"
-}
-```
-
-If the `Power` exists and is updated successfully (passes validations), update
-its description and return JSON data in the format below:
-
-```json
-{
-  "id": 1,
-  "name": "super strength",
-  "description": "Updated description"
-}
-```
-
-If the `Power` does not exist, return the following JSON data, along with
-the appropriate HTTP status code:
-
-```json
-{
-  "error": "Power not found"
-}
-```
-
-If the `Power` is **not** updated successfully (does not pass validations),
-return the following JSON data, along with the appropriate HTTP status code:
-
-```json
-{
-  "errors": ["validation errors"]
-}
-```
-
-### POST /hero_powers
-
-This route should create a new `HeroPower` that is associated with an
-existing `Power` and `Hero`. It should accept an object with the following
-properties in the body of the request:
-
-```json
-{
-  "strength": "Average",
-  "power_id": 1,
-  "hero_id": 3
-}
-```
-
-If the `HeroPower` is created successfully, send back a response with the data
-related to the `Hero`:
-
-```json
-{
-  "id": 1,
-  "name": "Kamala Khan",
-  "super_name": "Ms. Marvel",
-  "powers": [
-    {
-      "id": 1,
-      "name": "super strength",
-      "description": "gives the wielder super-human strengths"
-    },
-    {
-      "id": 2,
-      "name": "flight",
-      "description": "gives the wielder the ability to fly through the skies at supersonic speed"
-    }
-  ]
-}
-```
-
-If the `HeroPower` is **not** created successfully, return the following
-JSON data, along with the appropriate HTTP status code:
-
-```json
-{
-  "errors": ["validation errors"]
-}
-```
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
